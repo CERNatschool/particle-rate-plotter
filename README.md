@@ -22,5 +22,5 @@ These may be found in the `detsettings` directory.
 
 ##Further information
 
-* [http://cernatschool.web.cern.ch](The CERN@school website);
-* [http://medipix.web.cern.ch](The Medipix Collaboration website).
+* [The CERN@school website](http://cernatschool.web.cern.ch);
+* [The Medipix Collaboration website](http://medipix.web.cern.ch).
