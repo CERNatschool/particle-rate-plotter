@@ -1,26 +1,25 @@
-Particle Rate Plotter
-=====================
+CERN@school Particle Rate Plotter
+=================================
 
-This repository contains some basic code for analysing
-particle detection rates from data obtained with the
-Timepix hybrid silicon pixel detector as part of the
-CERN@school programme.
+This code is for estimating the mean rate of particles
+detected with CERN@school Timepix detectors.
 
-##Datasets
+For full instructions, see the wiki on the right.
 
-We have supplied a number of datasets for testing the functionality of the
-code - two consecutive hour-long datasets for the Mk1, and one
-hour-long dataset for the MX-10. These may be found in the
-`datasets` directory.
+* `process-frames.py`: processes Pixelman frames (Pixelman format);
+* `make-plots.py`: makes the frame properties plots.
 
-##Detector settings
+To run the unit tests, use:
 
-For reference, we have supplied the detector and pixel configuration
-settings files (as saved from Pixelman) for both detectors,
-and the Threshold Equalisation (TEQ) information for the Mk1 detector.
-These may be found in the `detsettings` directory.
+```bash
+$ nose2
+```
 
-##Further information
+##To Do
 
-* [The CERN@school website](http://cernatschool.web.cern.ch);
-* [The Medipix Collaboration website](http://medipix.web.cern.ch).
+* Add unit tests for the `plotting` directory;
+* Add unit tests for the `visualisation` directory.
+
+##Useful links
+
+* [CERN@school homepage](http://cernatschool.web.cern.ch).

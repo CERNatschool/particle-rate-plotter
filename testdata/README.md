@@ -3,8 +3,8 @@ Test data for the Particle Rate Plotter code
 
 This folder contains test data obtained with the following detectors:
 
-* `LSC000030`: CERN@school Mk1 detector, chip ID E09-W0072;
-* `LSC000001`: Jablotron MX-10 detector, chip ID B06-W0212,
+* `LSC000001`: Jablotron MX-10 detector, chip ID B06-W0212;
+* `LSC000030`: CERN@school Mk1 detector, chip ID E09-W0072,
 
 on Wednesday 2nd April 2014.
 
