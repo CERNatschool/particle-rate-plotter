@@ -82,9 +82,9 @@ class Kluster:
         ## The unweighted cluster y position [pixels].
         self.__y_uw = None
 
-        # Unweighted (u subsctript)
-        self.r_u     = -1.0
-        self.spatial_density_u = -1.0
+        ## Unweighted (u subsctript)
+        #self.r_u     = -1.0
+        #self.spatial_density_u = -1.0
 
         # Counts-related properties
         #
@@ -556,12 +556,12 @@ class KlusterFinder:
             # Tripixel...
             elif b.getNumberOfPixels() == 3:
                 # Tripixel gamma.
-                if b.r_u < TRIPIXEL_RADIUS: #0.75
+                if b.getRadiusUW() < TRIPIXEL_RADIUS: #0.75
                     self.__n_g3 += 1
             # Tetrapixel...
             elif b.getNumberOfPixels() == 4:
                 # Tetrapixel gamma.
-                if b.r_u < TETRAPIXEL_RADIUS: #0.71
+                if b.getRadiusUW() < TETRAPIXEL_RADIUS: #0.71
                     self.__n_g4 += 1
 
             self.__n_gammas = self.__n_g1 + self.__n_g2 + self.__n_g3 + self.__n_g4
