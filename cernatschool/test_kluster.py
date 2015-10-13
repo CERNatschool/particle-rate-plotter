@@ -62,11 +62,11 @@ class KlusterTest(unittest.TestCase):
         #
         # This frame has 34 clusters.
         self.assertEqual(kf.getNumberOfKlusters(), 9)
-        self.assertEqual(kf.getNumberOfGammas(), 5)
+        self.assertEqual(kf.getNumberOfGammas(), 2)
         self.assertEqual(kf.getNumberOfMonopixels(), 1)
         self.assertEqual(kf.getNumberOfBipixels(), 0)
-        self.assertEqual(kf.getNumberOfTripixelGammas(), 2)
-        self.assertEqual(kf.getNumberOfTetrapixelGammas(), 2)
+        self.assertEqual(kf.getNumberOfTripixelGammas(), 0)
+        self.assertEqual(kf.getNumberOfTetrapixelGammas(), 1)
 
         ## The list of clusters.
         ks = kf.getListOfKlusters()

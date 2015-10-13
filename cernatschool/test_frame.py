@@ -109,12 +109,12 @@ class FrameTest(unittest.TestCase):
         #
         # Cluster information.
         self.assertEqual(frames[0].getNumberOfKlusters(), 9)
-        self.assertEqual(frames[0].getNumberOfGammas(), 5)
+        self.assertEqual(frames[0].getNumberOfGammas(), 2)
         self.assertEqual(frames[0].getNumberOfMonopixels(), 1)
         self.assertEqual(frames[0].getNumberOfBipixels(), 0)
-        self.assertEqual(frames[0].getNumberOfTripixelGammas(), 2)
-        self.assertEqual(frames[0].getNumberOfTetrapixelGammas(), 2)
-        self.assertEqual(frames[0].getNumberOfNonGammas(), 4)
+        self.assertEqual(frames[0].getNumberOfTripixelGammas(), 0)
+        self.assertEqual(frames[0].getNumberOfTetrapixelGammas(), 1)
+        self.assertEqual(frames[0].getNumberOfNonGammas(), 7)
 
 
 if __name__ == "__main__":
