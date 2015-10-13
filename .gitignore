@@ -1,2 +1,5 @@
 # Python
 *.py[cod]
+
+# Old, old code.
+old/

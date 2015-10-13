@@ -52,6 +52,10 @@ if __name__ == "__main__":
 
     ## The path to the data file.
     datapath = args.inputPath
+    #
+    # Check if the input directory exists. If it doesn't, quit.
+    if not os.path.isdir(datapath):
+        raise IOError("* ERROR: '%s' input directory does not exist!" % (datapath))
 
     ## The output path.
     outputpath = args.outputPath

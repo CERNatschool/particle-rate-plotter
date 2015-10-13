@@ -236,7 +236,7 @@ class RateHistogram():
                      color='black', \
                      yerr=self.__err, \
                      ecolor='black', \
-                     capthick=2, \
+#                     capthick=2, \
                      elinewidth=1)
 
         # Save the figure.

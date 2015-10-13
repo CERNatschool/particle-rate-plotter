@@ -3,7 +3,7 @@
 
 """
 
- CERN@school - Make Plots
+ CERN@school - Estimate the particle rate
 
  See the README.md file and the GitHub wiki for more information.
 
@@ -33,9 +33,9 @@ from plotting.poisson import RateHistogram
 if __name__ == "__main__":
 
     print("*")
-    print("*==============================*")
-    print("* CERN@school - make the plots *")
-    print("*==============================*")
+    print("*=================================*")
+    print("* CERN@school - estimate the rate *")
+    print("*=================================*")
 
     # Get the datafile path from the command line.
     parser = argparse.ArgumentParser()
@@ -46,9 +46,19 @@ if __name__ == "__main__":
 
     ## The path to the data file.
     datapath = args.inputPath
+    #
+    # Check if the input directory exists. If it doesn't, quit.
+    if not os.path.isdir(datapath):
+        raise IOError("* ERROR: '%s' input directory does not exist!" % (datapath))
+
 
     ## The output path.
     outputpath = args.outputPath
+    #
+    # Check if the output directory exists. If it doesn't, quit.
+    if not os.path.isdir(outputpath):
+        raise IOError("* ERROR: '%s' output directory does not exist!" % (outputpath))
+
 
     # Set the logging level.
     if args.verbose:
@@ -57,7 +67,7 @@ if __name__ == "__main__":
         level=lg.INFO
 
     # Configure the logging.
-    lg.basicConfig(filename=outputpath + '/log_make-plots.log', filemode='w', level=level)
+    lg.basicConfig(filename=outputpath + '/log_estimate-rate.log', filemode='w', level=level)
 
     print("*")
     print("* Input path          : '%s'" % (datapath))
@@ -68,14 +78,10 @@ if __name__ == "__main__":
     # Set up the directories
     #------------------------
 
-    # Check if the output directory exists. If it doesn't, quit.
-    if not os.path.isdir(outputpath):
-        raise IOError("* ERROR: '%s' output directory does not exist!" % (outputpath))
-
     # Create the subdirectories.
 
     ## The path to the frame plots.
-    fppath = outputpath + "/frameplots/"
+    fppath = os.path.join(outputpath, "frameplots")
     #
     if os.path.isdir(fppath):
         rmtree(fppath)
@@ -84,8 +90,16 @@ if __name__ == "__main__":
     lg.info(" * Creating directory '%s'..." % (fppath))
     lg.info("")
 
-    ## The frame properties JSON file - FIXME: check it exists...
-    ff = open(datapath + "/frames.json", "r")
+    ## The filename of the frame properties JSON.
+    frame_properties_json_filename = os.path.join(datapath, "frames.json")
+    #
+    # Check if it exists. If it doesn't, quit.
+    if not os.path.exists(frame_properties_json_filename):
+        raise IOError("* ERROR: '%s' output directory does not exist!" \
+            % (frame_properties_json_filename))
+
+    ## The frame properties JSON file.
+    ff = open(frame_properties_json_filename, "r")
     #
     fd = json.load(ff)
     ff.close()
@@ -141,12 +155,15 @@ if __name__ == "__main__":
     fp += "  </body>\n"
     fp += "</html>"
 
+    ## The web page filename.
+    framepage_filename = os.path.join(fppath, "index.html")
+    #
     # Write out the frame property index page.
-    with open("%s/index.html" % (fppath), "w") as framepage:
+    with open(framepage_filename, "w") as framepage:
         framepage.write(fp)
 
     # Now you can view the "index.html" files to see the results!
     print("*")
     print("* Plotting complete.")
-    print("* View your results by opening '%s' in a browser, e.g." % (fppath))
-    print("* $ firefox %s/index.html &" % (fppath))
+    print("* View your results by opening '%s' in a browser, e.g." % (framepage_filename))
+    print("* $ firefox %s &" % (framepage_filename))
