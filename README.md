@@ -26,9 +26,6 @@ $ nose2
 
 ##To Do
 
-* Reformat the geographical information JSON information;
-* Add pixel mask functionality;
-* Rename the data and DSC files with chip ID and start time info?
 * Add unit tests for the `plotting` directory;
 * Add unit tests for the `visualisation` directory;
 * Add unit tests for the `timestuff` directory;
