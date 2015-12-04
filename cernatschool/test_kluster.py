@@ -30,15 +30,15 @@ class KlusterTest(unittest.TestCase):
     def test_create_asciixyc_frame(self):
 
         ## The dataset wrapper.
-        ds = Dataset("testdata/B06-W0212/2014-04-02-150255/ASCIIxyC/")
+        ds = Dataset("testdata/B06-W0212/2014-04-02-150255/RAW/ASCIIxyC/")
 
         ## The frame metadata.
         fmd = None
         #
-        with open("testdata/B06-W0212/2014-04-02-150255/metadata.json", "r") as fmdf:
+        with open("testdata/B06-W0212/2014-04-02-150255/geo.json", "r") as fmdf:
             fmd = json.load(fmdf, fmd)
         #
-        lat, lon, alt = fmd[0]['lat'], fmd[0]['lon'], fmd[0]['alt']
+        lat, lon, alt = fmd['lat'], fmd['lon'], fmd['alt']
 
         ## The pixel mask.
         pixel_mask = {}
@@ -100,7 +100,7 @@ class KlusterTest(unittest.TestCase):
         self.assertAlmostEqual(ks[0].getDensityUW(), 0.104312, places=6)
 
         # Counts.
-        self.assertEqual(ks[0].getTotalCounts(), 851)
+        self.assertEqual(ks[0].getTotalCounts(), 879)
         self.assertEqual(ks[0].getMaxCountValue(), 88)
 
         # Energy.

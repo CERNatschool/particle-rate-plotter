@@ -27,15 +27,15 @@ class FrameTest(unittest.TestCase):
     def test_create_asciixyc_frame(self):
 
         ## The dataset wrapper.
-        ds = Dataset("testdata/B06-W0212/2014-04-02-150255/ASCIIxyC/")
+        ds = Dataset("testdata/B06-W0212/2014-04-02-150255/RAW/ASCIIxyC/")
 
         ## The frame metadata.
         fmd = None
         #
-        with open("testdata/B06-W0212/2014-04-02-150255/metadata.json", "r") as fmdf:
+        with open("testdata/B06-W0212/2014-04-02-150255/geo.json", "r") as fmdf:
             fmd = json.load(fmdf, fmd)
         #
-        lat, lon, alt = fmd[0]['lat'], fmd[0]['lon'], fmd[0]['alt']
+        lat, lon, alt = fmd['lat'], fmd['lon'], fmd['alt']
 
         ## The pixel mask.
         pixel_mask = {}
@@ -58,7 +58,7 @@ class FrameTest(unittest.TestCase):
         #
         # Spatial information.
         self.assertEqual(frames[0].getLatitude(),  51.261015)
-        self.assertEqual(frames[0].getLongitude(), -1.084127)
+        self.assertEqual(frames[0].getLongitude(), 1.084127)
         self.assertEqual(frames[0].getAltitude(),  48.0     )
         #
         self.assertEqual(frames[0].getRoll(), 0.0)

@@ -3,3 +3,6 @@
 
 # Old, old code.
 old/
+
+# Log files.
+log_*.log

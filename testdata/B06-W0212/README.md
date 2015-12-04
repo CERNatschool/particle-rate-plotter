@@ -1,5 +1,5 @@
-Datasets from the LSC00001 detector
-===================================
+Datasets from the MX-10 B06-W0212 detector
+==========================================
 
 This dataset is from a background radiation measurement taken in
 Dr Whyntie's office in the Langton Star Centre.

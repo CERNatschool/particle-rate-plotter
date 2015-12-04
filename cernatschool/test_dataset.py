@@ -24,7 +24,7 @@ class DatasetTest(unittest.TestCase):
     def test_import_dataset(self):
 
         ## The Pixelman dataset object.
-        pds = Dataset("testdata/B06-W0212/2014-04-02-150255/ASCIIxyC/")
+        pds = Dataset("testdata/B06-W0212/2014-04-02-150255/RAW/ASCIIxyC/")
 
         # The tests.
 
