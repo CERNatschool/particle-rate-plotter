@@ -198,7 +198,8 @@ if __name__ == "__main__":
         lg.info(" * Hour %02d start time % 15d [s] => '%s' UTC." % (hour, hour_start_time_s, make_time_dir(hour_start_time_s)))
 
         # Make the plot for the hour.
-        hour_plots[hour] = HourPlot(my_day.getHour(hour), y_label="Pixels per second / [$\\textrm{s}^{-1}$]")
+        hour_plots[hour] = HourPlot(my_day.getHour(hour), y_label="Pixels per second / [s -1]")
+        #hour_plots[hour] = HourPlot(my_day.getHour(hour), y_label="Pixels per second / [$\\textrm{s}^{-1}$]")
         #hour_plots[hour] = HourPlot(my_day.getHour(hour), y_label="Pixels per second / [$\\textrm{s}^{-1}$]", y_max=30)
 
         # Save the profile plot to the output directory.

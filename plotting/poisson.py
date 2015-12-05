@@ -27,8 +27,8 @@ from matplotlib.colors import LogNorm
 from matplotlib import rc
 
 # Uncomment to use LaTeX for the plot text.
-rc('font',**{'family':'serif','serif':['Computer Modern']})
-rc('text', usetex=True)
+#rc('font',**{'family':'serif','serif':['Computer Modern']})
+#rc('text', usetex=True)
 
 #...for the chi^2 method.
 from plotting.stats import chi2

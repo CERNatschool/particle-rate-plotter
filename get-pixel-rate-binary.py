@@ -81,11 +81,11 @@ if __name__ == "__main__":
     lg.info(" * Output path         : '%s'" % (outputpath))
     lg.info(" *")
 
-    ## The path to the data files.
-    dat_files_path = os.path.join(datapath, "ASCIIxyC")
+    ## The path to the dataset.
+    dataset_path = os.path.join(datapath, "RAW/ASCIIxyC")
 
     ## The dataset to process.
-    ds = Dataset(dat_files_path)
+    ds = Dataset(dataset_path)
 
     ## The path to the geographic information JSON file.
     geo_json_path = os.path.join(datapath, "geo.json")

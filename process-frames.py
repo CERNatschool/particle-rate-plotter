@@ -93,25 +93,28 @@ if __name__ == "__main__":
     lg.info(" * Creating directory '%s'..." % (frpath))
     lg.info("")
 
+    ## The path to the dataset.
+    dataset_path = os.path.join(datapath, "RAW/ASCIIxyC")
+
     ## The dataset to process.
-    ds = Dataset(datapath + "/ASCIIxyC")
+    ds = Dataset(dataset_path)
 
     # Get the metadata from the JSON.
 
     ## The frame metadata.
     fmd = None
     #
-    with open(datapath + "/metadata.json", "r") as fmdf:
+    with open(datapath + "/geo.json", "r") as fmdf:
         fmd = json.load(fmdf, fmd)
     #
     ## Latitude of the dataset [deg.].
-    lat = fmd[0]['lat'] # [deg.]
+    lat = fmd['lat'] # [deg.]
     #
     ## Longitude of the dataset [deg.].
-    lon = fmd[0]['lon'] # [deg.]
+    lon = fmd['lon'] # [deg.]
     #
     ## Altitude of the dataset [m].
-    alt = fmd[0]['alt'] # [m]
+    alt = fmd['alt'] # [m]
 
     ## The pixel mask.
     pixel_mask = {}
