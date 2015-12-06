@@ -68,3 +68,15 @@ def getPixelsStringFromPixelMap(pixelmap):
             s += "\n"
 
     return s
+
+
+def make_time_dir(sec):
+    """ Get the time in the correct format for naming data. """
+
+    ## The time represented as a Python time object.
+    mytime = time.gmtime(sec)
+
+    ## The time in the directory format.
+    s = time.strftime("%Y-%m-%d-%H%M%S", mytime)
+
+    return s

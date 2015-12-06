@@ -32,6 +32,9 @@ import json
 #...for processing the datasets.
 from cernatschool.dataset import Dataset
 
+#...for making time.
+from cernatschool.handlers import make_time_dir
+
 #...for making the frame and clusters images.
 from visualisation.visualisation import makeFrameImage
 
@@ -84,13 +87,13 @@ if __name__ == "__main__":
     # Create the subdirectories.
 
     ## The path to the frame images.
-    frpath = outputpath + "/frames/"
+    frame_output_path = os.path.join(outputpath, "PNG")
     #
-    if os.path.isdir(frpath):
-        rmtree(frpath)
-        lg.info(" * Removing directory '%s'..." % (frpath))
-    os.mkdir(frpath)
-    lg.info(" * Creating directory '%s'..." % (frpath))
+    if os.path.isdir(frame_output_path):
+        rmtree(frame_output_path)
+        lg.info(" * Removing directory '%s'..." % (frame_output_path))
+    os.mkdir(frame_output_path)
+    lg.info(" * Creating directory '%s'..." % (frame_output_path))
     lg.info("")
 
     ## The path to the dataset.
@@ -104,7 +107,7 @@ if __name__ == "__main__":
     ## The frame metadata.
     fmd = None
     #
-    with open(datapath + "/geo.json", "r") as fmdf:
+    with open(os.path.join(datapath, "geo.json"), "r") as fmdf:
         fmd = json.load(fmdf, fmd)
     #
     ## Latitude of the dataset [deg.].
@@ -119,7 +122,7 @@ if __name__ == "__main__":
     ## The pixel mask.
     pixel_mask = {}
 
-    with open(datapath + "/masked_pixels.txt", "r") as mpf:
+    with open(os.path.join(datapath, "masked_pixels.txt"), "r") as mpf:
         rows = mpf.readlines()
         for row in rows:
             vals = [int(val) for val in row.strip().split("\t")]
@@ -138,10 +141,12 @@ if __name__ == "__main__":
     for f in frames:
 
         ## The basename for the data frame, based on frame information.
-        bn = "%s_%d-%06d" % (f.getChipId(), f.getStartTimeSec(), f.getStartTimeSubSec())
+        bn = "%s_%s" % (f.getChipId(), make_time_dir(f.getStartTimeSec()))
+
+        #bn = "%s_%d-%06d" % (f.getChipId(), f.getStartTimeSec(), f.getStartTimeSubSec())
 
         # Create the frame image.
-        makeFrameImage(bn, f.getPixelMap(), frpath, f.getPixelMask())
+        makeFrameImage(bn, f.getPixelMap(), frame_output_path, f.getPixelMask())
 
         # Create the metadata dictionary for the frame.
         metadata = {
@@ -177,5 +182,5 @@ if __name__ == "__main__":
     # We will use this later to make the frame plots,
     # rather than processing the whole frame set again.
     #
-    with open(outputpath + "/frames.json", "w") as jf:
+    with open(os.path.join(outputpath, "frames.json"), "w") as jf:
         json.dump(mds, jf)
