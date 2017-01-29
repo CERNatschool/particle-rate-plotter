@@ -16,6 +16,7 @@ but may also be found on FigShare
 
 ## Overview
 This `README.md` file has become rather large, so here's an overview:
+
 1. **Some disclaimers**;
 2. **Getting the code**: how to get the code and set up your system;
 3. **Processing the frames**: turn the raw detector data into useful cluster information;
