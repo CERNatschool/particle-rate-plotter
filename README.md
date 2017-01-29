@@ -5,29 +5,29 @@ detected with a
 using the method described in Section 3 of the CERN@school
 **Contemporary Physics** paper
 ([Whyntie et al. 2015](http://dx.doi.org/10.1080/00107514.2015.1045193))
-and the CERN@school "how-to" guide on
+and the accompanying background radiation measurement "how-to" guide on
 [FigShare](https://dx.doi.org/10.6084/m9.figshare.895961.v1).
 There is also code for plotting the time profile (i.e. the number
 of pixels detected over a time series) for a given dataset for a
-given day).
+given day.
 The datasets featured in the paper are included with the code,
-but may also be found on [FigShare](http://figshare.org)
+but may also be found on FigShare
 [here](https://dx.doi.org/10.6084/m9.figshare.1618851.v2).
 
 ## Overview
 This `README.md` file has become rather large, so here's an overview:
-* **Some disclaimers**;
-* **Getting the code**: how to get the code and set up your system;
-* **Processing the frames**: turn the raw detector data into useful cluster information;
-* **Plotting the cluster frequency**: plot the clusters-per-frame histogram and fit to a Poisson distribution;
-* **Plotting the time profile**: plot the number of pixels per unit time over the course of a day;
-* **Unit tests**: how to check everything (well, almost everything) is working;
-* **The sample datasets**: some information about the datasets featured in this work;
-* **Acknowledgements**;
-* **Useful links**. 
+1. **Some disclaimers**;
+2. **Getting the code**: how to get the code and set up your system;
+3. **Processing the frames**: turn the raw detector data into useful cluster information;
+4. **Plotting the cluster frequency**: plot the clusters-per-frame histogram and fit to a Poisson distribution;
+5. **Plotting the time profile**: plot the number of pixels per unit time over the course of a day;
+6. **Unit tests**: how to check everything (well, almost everything) is working;
+7. **The sample datasets**: some information about the datasets featured in this work;
+8. **Acknowledgements**;
+9. **Useful links**. 
 
 
-## Some disclaimers
+## 1) Some disclaimers
 * _This code dates from 2015. While every attempt has been
 made to ensure that it is usable, some work may be required to get it
 running on your own particular system.
@@ -44,7 +44,7 @@ Please also feel free to fork and modify this code as required for
 your own research._
 
 
-## Getting the code
+## 2) Getting the code
 To get the code, create a working directory on your CernVM and
 clone it from GitHub with the following command:
 
@@ -67,7 +67,7 @@ libraries such as `matplotlib` via e.g. the
 [Anaconda Python distribution](http://anaconda.org)._
 
 
-## Processing the frames
+## 3) Processing the frames
 The first thing to do is process the raw data from the detector
 into images and clusters that we can analyse further.
 The `process-frames.py` Python script processes the frames
@@ -114,7 +114,7 @@ $ eog ../tmp-mx10/frames/ &
 You can then view each image by pressing the left or right arrow keys.
 
 
-## Plotting the cluster frequency
+## 4) Plotting the cluster frequency
 Having processed the frames and extracted the frame and cluster
 information, we can now perform some analysis on our data.
 The first thing we can do is plot a frequency histogram of the
@@ -166,7 +166,7 @@ $ firefox ../tmp-mk1/frameplots/index.html &
 ```
 
 
-## Plotting the time profile
+## 5) Plotting the time profile
 To plot the time profiles of a given dataset, we need two scripts.
 The first,
  `get-pixel-rate-binary.py`,
@@ -178,7 +178,7 @@ The `profile-data-by-day.py` Python script then uses this binary
 scoping file to produce an hour-by-hour plot of a specified day in the 
 data set (so you will need to know which day you want to look at).
 
-### Converting the data to a binary file
+### 5.1) Converting the data to a binary file
 First, let's convert the datasets into two binary files of the frame
 start times, acquisition times, and number of hit pixels in each
 frame with the following command:
@@ -198,7 +198,7 @@ $ python get-pixel-rate-binary.py testdata/E09-W0092/2014-04-02-150315/ ../tmp-m
 ```
 
 
-### Making the time profile
+### 5.2) Making the time profile
 
 We can then make the plots of the hit pixels per second
 across the twenty-four hours of the day with the
@@ -216,6 +216,8 @@ To get the same plots for the Mk1 dataset, use:
 ```bash
 $ python get-pixel-rate-binary.py testdata/E09-W0092/2014-04-02-150315/ ../tmp-mk1/
 [... corresponding output ...]
+$ python profile-data-by-day.py ../tmp-mk1/E09-W0092_2014-04-02-140315.bin ../tmp-mk1/ 2014-04-02-UTC -1 0
+[... corresponding output ...]
 $ firefox ../tmp-mk1/2014-04-02-UTC/pixel-profile.html &
 ```
 
@@ -226,11 +228,12 @@ _**Exercise**: can you make a different version of the script that makes
 a time profile of the number of clusters detected per unit time?_
 
 
-## The unit tests
+## 6) The unit tests
 
 Testing code to make sure it's running as expected is always a
 good idea. We've provided code to run some **unit tests** on some
-of the Python objects used in the scripts here.
+of the Python objects used in the scripts here. These test files are
+found in the different subfolders and begin with `test_`.
 If you have `nose` installed, you cam run these unit tests with:
 
 ```bash
@@ -251,7 +254,7 @@ $ sudo pip install nose2
 _and enter your password when requested._
 
 
-## The sample datasets
+## 7) The sample datasets
 The data featured in this repository were recorded with a
 CERN@school MX-10 particle camera (chip ID `B06-W0212`) and a
 CERN@school Mk1 detector (chip ID `E09-W0092`).
@@ -263,14 +266,14 @@ You may also find the datasets in the
 [here](https://dx.doi.org/10.6084/m9.figshare.1618851.v2).
 
 
-## Acknowledgements
+## 8) Acknowledgements
 CERN@school was supported by
 the UK [Science and Technology Facilities Council](http://www.stfc.ac.uk) (STFC)
 via grant numbers ST/J000256/1 and ST/N00101X/1,
 as well as a Special Award from the Royal Commission for the Exhibition of 1851.
 
 
-## Useful links
+## 9) Useful links
 * [Setting up a GridPP CernVM](http://doi.org/10.6084/m9.figshare.4552825.v1);
 * [Whyntie et al. 2015](http://dx.doi.org/10.1080/00107514.2015.1045193) - the CERN@school Contemporary Physics paper featuring this experiment (Section 3);
 * The [sample datasets](https://dx.doi.org/10.6084/m9.figshare.1618851.v2) as featured in (Whyntie et al. 2015);
