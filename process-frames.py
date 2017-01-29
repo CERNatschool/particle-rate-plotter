@@ -5,9 +5,7 @@
 
  CERN@school - Processing Frames
 
- See the README.md file and the GitHub wiki for more information.
-
- http://cernatschool.web.cern.ch
+ See the README.md file for more information.
 
 """
 
